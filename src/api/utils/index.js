@@ -1,12 +1,8 @@
-function isResourceAnApiRequest(){
-    console.log("is Resource an API request")
-}
-
-function handleApiRequest(){
-    console.log("handle web file request")
+const { API_PATH } = require("../constants")
+function isResourceAnApiRequest(url){
+    return API_PATH[url] || false
 }
 
 module.exports={
     isResourceAnApiRequest,
-    handleApiRequest
 }
