@@ -1,12 +1,16 @@
 const fs = require("fs")
 const { FILE_PATH, ROOT } = require("../constants")
-// const { readFileFromDisk } = require("../../utils")
+const { readFileFromDisk } = require("../../utils")
 
-function readFileFromDisk(filePath, encoding="utf-8"){
-    let file = fs.readFileSync(filePath, encoding)
-    return file
+function isResourceWebFileRequest(url){
+    return FILE_PATH[url] !== undefined ? true : false
+}
+
+function readFile(req, res){
+    res.end(readFileFromDisk(`${ROOT}${FILE_PATH[req.url]}`))
 }
 
 module.exports={
-    readFileFromDisk
+    readFile,
+    isResourceWebFileRequest
 }
