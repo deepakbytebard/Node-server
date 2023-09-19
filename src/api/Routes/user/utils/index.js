@@ -1,17 +1,19 @@
-function getUser(url, res){
-    res.end(":send me user")
+function getUser(query, userData) {
+    let [key, value,...rest] = query.split("=")
+    let user = userData.data[value]
+    return (user)
 }
 
-function upsertUser(req, res){
-    res.end(":add user")
+function upsertUser(req, userData) {
+    return ":add user"
 }
 
-function updateUser(req, res){
-    res.end(":update user")
+function updateUser(req, userData) {
+    return (":update user")
 }
 
-function deleteUser(req, res){
-    res.end(":delete user")
+function deleteUser(route, query, userData) {
+    return (":delete user")
 }
 
 module.exports = {

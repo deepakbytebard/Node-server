@@ -1,22 +1,16 @@
 const { getUser, upsertUser, updateUser, deleteUser } = require("./utils")
-function handleUserApiRequest(req, res){
-    const {url, method} = req
-    switch (method){
+function handleUserApiRequest(req, userData) {
+    const { url, method } = req
+    const [route, query] = url.split("?")
+    switch (method) {
         case "GET":
-            getUser(url, res);
-            break;
+            return (getUser(route, query, userData));
         case "POST":
-            upsertUser(req,res);
-            break;
+            return (upsertUser(req, userData));
         case "PUT":
-            updateUser(req, res);
-            break;
+            return (updateUser(req, userData));
         case "DELETE":
-            deleteUser(url, res);
-            break;
-        default:
-            res.end("Does not support given user method.")
-            break;
+            return (deleteUser(route, query, userData));
     }
 }
 
